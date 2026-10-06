@@ -4,12 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <audio id="click-magic" preload="auto">
-        <source src="https://socrarius-tool.com/launcher/magic21.mp3" type="audio/mp3">
-    </audio>
-
-    <title>Font list</title>
+    <title>Video Creation</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -19,125 +14,47 @@
             color: #eeeeee;
         }
 
-        /* タイトルバナー（高さ65px） */
-        .title-banner {
-            background-color: #000000;
-            height: 65px; 
-            box-sizing: border-box;
-            padding: 15px 20px;
-            border-bottom: 1px solid #333;
-        }
-
-         /* ✨ 変更：バナー用のラッパー（画像がはみ出さないように中央に包む） */
+        /* ✨ バナー用のラッパー（画像がはみ出さないように中央に包む） */
         .banner-container {
             width: 100%;
-            background-color: #000000; /* 画像の背景を黒にして馴染ませる */
-            text-align: center;       /* 画像を中央揃えにする */
+            background-color: #000000;
+            text-align: center;
         }
 
-        /* ✨ 変更：最上部の画像（固定せず、画面幅に合わせて伸縮するだけ） */
+        /* ✨ 最上部の画像（画面幅に合わせて伸縮） */
         .top-banner-img {
             display: block;
-            width: 100%;         /* 画面の横幅いっぱいに広げる */
-            max-width: 900px;    /* テーブルの最大幅と合わせて一体感を出す */
-            height: auto;        /* 縦横比を崩さずに拡大縮小 */
-            margin: 0 auto;      /* 中央揃え */
-        }
-
-        /* --- 🌸 ヘッダー（黒バー＋ナビ）だけを固定！ --- */
-        .fixed-header {
-            position: fixed;
-            /* 💡 魔法のポイント：top: 0 ではなく、初期状態は通常配置、スクロール時に上部に張り付くように設定！ */
-            position: -webkit-sticky; /* サファリ用 */
-            position: sticky;
-            top: 0;
-            left: 0;
             width: 100%;
-            z-index: 9999; /* 重なり順を一番上に */
-            background-color: #1a1a1a;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-        }
-
-        .title-banner h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #00a8ff;
-            border-left: 5px solid #008eb6;
-            padding-left: 15px;
-            line-height: 1.2;
-        }
-
-        /* ナビゲーションバー（高さ35px） */
-        .nav-bar {
-            background-color: #000000;
-            height: 35px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: flex-end;
-            padding: 0 10px;
-            align-items: center;
-            border-bottom: 2px solid #008eb6;
-        }
-
-        .nav-bar a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 0 15px;
-            line-height: 35px;
-            border-right: 1px solid #444;
-            transition: color 0.3s;
+            max-width: 900px;
+            height: auto;
+            margin: 0 auto;
         }
 
         /* --- コンテンツエリア --- */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            /* 🌸 ヘッダーの合計(100px)＋余白分を確保 */
-            padding-top: 20px; 
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 40px;
+            padding: 15px 20px 40px 20px; /* ★上部余白をキュッと縮めてバナーとの距離を最適化 */
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #2b2b2b;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* --- 🌸 運命の「Shape Name」バーの固定設定 --- */
-        th {
+        /* 🌸 青いミニバナー（見出しエリア） */
+        .page-title-box {
             background-color: #008eb6;
-            color: white;
-            position: sticky;
-            /* 🌸 ヘッダー合計 100px の位置に吸着！ */
-            top: 0px; 
-            z-index: 100;
-            padding: 12px;
-            text-align: left;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 12px 18px;
+            border-radius: 6px;
+            margin-bottom: 25px; /* 下のコンテンツとの隙間 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
 
-        td {
-            padding: 16px;
-            border-bottom: 1px solid #3d3d3d;    /* ★薄いグレーの区切り線 */
-            border-right: 1px solid #3d3d3d; /* 横線と同じ落ち着いたグレー */
-        }
-
-        .preview-img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 4px;
-        }
-
-        /* 🌸 セクションタイトル（追加） */
+        /* 🌸 セクションタイトル（ステップ1など） */
         .section-title {
             background: #000;
             color: #00f2fe;
             padding: 8px 15px;
-            margin: 15px 0 15px 0;
+            margin: 20px 0 15px 0;
             font-size: 14px;
             font-weight: bold;
             border-left: 4px solid #00f2fe;
@@ -145,22 +62,7 @@
             box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.2);
         }
 
-
-    .secret-link {
-        display: inline-block;
-        cursor: default; 
-    }
-
-    .secret-link .preview-img {
-        pointer-events: auto; 
-        transition: none;     
-    }
-    
-    .secret-link:hover, .secret-link:active {
-        text-decoration: none;
-    }
-
-     /* 🌸 解説画像を入れる専用枠BOX */
+        /* 🌸 解説画像を入れる専用枠BOX */
         .img-box {
             display: inline-block;
             border: 1px solid #008eb6;
@@ -179,214 +81,263 @@
             height: auto;
         }
 
+        /* SAO風のコンテナ枠設定 */
+.sao-video-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6px; /* 内側の黒い隙間（SAOの二重枠っぽさ） */
+    background: rgba(0, 0, 0, 0.6); /* 半透明のダーク背景 */
+    border: 2px solid #ff7700; /* SAOといえば情熱的なオレンジ、またはサイバーな淡い光 */
+    box-shadow: 0 0 15px rgba(255, 119, 0, 0.4), inset 0 0 10px rgba(255, 119, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+/* 四隅の近未来UI風コーナーデコレーション */
+.sao-corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 3px solid #ffffff; /* 輝く角のアクセント */
+    z-index: 10;
+}
+.sao-corner.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.sao-corner.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.sao-corner.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.sao-corner.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* 画面を走る、うっすらとしたゴールド・オレンジ風スキャンライン 
+.sao-scanline {
+    position: absolute;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+     
+    background: 
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+        linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1), rgba(218, 165, 32, 0.2));
+    
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+    
+    z-index: 20 !important; 
+    opacity: 0.6; 
+}*/
+
+/* ついでに画像がscanlineを隠さないようにタグを調整 */
+.sao-movie-content {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1; /* scanlineより下にする */
+}
+
+
+/* 左上に浮かぶUI風のステータスタグ */
+.sao-tag {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    background: #ff7700;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    z-index: 6;
+    box-shadow: 0 0 5px rgba(255, 119, 0, 0.8);
+}
+
+/* aタグ化しても崩れないようにするための魔法 */
+.sao-link-box {
+    display: block;        /* インライン要素をブロック化 */
+    text-decoration: none; /* 下線を消す */
+    color: inherit;        /* 色を継承 */
+    transition: transform 0.3s;
+}
+
+/*.sao-link-box:hover {
+    transform: scale(1.02); 
+    border-color: #ffaa00;  
+}*/
+
+/* 念のため画像もリンクに合わせて整理 */
+.sao-link-box .sao-movie-content {
+    pointer-events: none; /* クリック判定を親のaタグに任せる */
+}
     </style>
+
+
 </head>
 <body>
 
-        <div class="banner-container">
-        <img src="https://socrarius-tool.com/favorite_fonts/banner1.jpg" alt="socrarius" class="top-banner-img">
+    <!-- 🌸 効果音（bodyのすぐ下に正しく配置） -->
+    <audio id="click-magic" preload="auto">
+        <source src="https://socrarius-tool.com/launcher/magic21.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- 🌸 トップバナー画像 -->
+    <div class="banner-container">
+        <img src="https://socrarius-tool.com/VideoCreation/banner1.jpg" alt="socrarius" class="top-banner-img">
     </div>
 
+    <!-- 🌸 メインコンテンツ（1つのcontainerにまとめる！） -->
     <div class="container">
-        <div class="title-area">
+
+        <!-- 💡 青いミニバナー（単体で見栄え良く独立化！） -->
+        <div class="page-title-box">
+            瞬きするキャラクター画像の作り方
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 30%;">Font</th>
-                    <th style="width: 70%;">Preview</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Noto Sans</td>
-                    <td><img src="font1.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Noto Sans ip</td>
-                    <td><img src="font2.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>MSゴシック 標準</td>
-                    <td><img src="font3.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>MS明朝 標準</td>
-                    <td><img src="font4.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Alex Brush</td>
-                    <td><img src="font5.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Segoe UI</td>
-                    <td><img src="font6.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Meiryo/メイリオ</td>
-                    <td><img src="font7.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Yu Gothic/游ゴシック</td>
-                    <td><img src="font8.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Arial</td>
-                    <td><img src="font9.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Calibri</td>
-                    <td><img src="font10.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Cambria</td>
-                    <td><img src="font11.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>やさしさゴシック</td>
-                    <td><img src="font12.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>しっぽり明朝</td>
-                    <td><img src="font13.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>コーポレート・ロゴ</td>
-                    <td><img src="font14.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>BIZ UDPゴシック</td>
-                    <td><img src="font15.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Futura</td>
-                    <td><img src="font16.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Garamond</td>
-                    <td><img src="font17.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Didot</td>
-                    <td><img src="font18.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Bodoni</td>
-                    <td><img src="font19.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>JetBrainsMono</td>
-                    <td><img src="font21.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                <tr>
-                    <td>Orbitron</td>
-                    <td><img src="font22.png" alt="吹き出し" class="preview-img"></td>
-                </tr>
-
-                 <tr>
-                 <td>MT Extra</td>
-                <td>
-                <a href="https://socrarius-tool.com/BookofTruth/" class="hidden-door" onclick="openHiddenDoor(event)">
-                <img src="font20.png" alt="吹き出し" class="sao-movie-content">
-                </a>
-
-                <audio id="click-magic" preload="auto">
-                <source src="https://socrarius-tool.com/launcher/magic21.mp3" type="audio/mp3">
-                </audio>
-                </td>
-                </tr>
-
-                </tbody>
-        </table>
+        <div class="section-title">ステップ1</div>
+        &emsp;&emsp;Photoshopで 「ウィンドウ」 → 「タイムライン」 → 「フレームアニメーションを作成」 の順で選択してください。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample1.png">
+        </div>
+        &emsp;&emsp;上記のウィンドウが展開されます。<br>
+        &emsp;&emsp;これ、「パラパラ漫画」を作る機能ですので、身構える必要は全くありません。<br>
+        &emsp;&emsp;準備が出来たらステップ2に進みましょう。<br>
+        <br>
+        <br>
+        <div class="section-title">ステップ2</div>
+        &emsp;&emsp;投げ縄ツールで目だけを囲います。<br>
+        &emsp;&emsp;「Ctrl+C」 → 「Ctrl+Shift+V」で全く同じ場所に目を複製します。<br>
+        &emsp;&emsp;*範囲を選択する方法は多々ありますので、自分が楽だと思う方法を探してみてください。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample2.png">
+        </div>
+        <br>
+        <br>
+        <div class="section-title">ステップ3</div>
+        &emsp;&emsp;コピーするとレイヤーが一つ追加されますので、分かりやすいように目だけのレイヤーを「eye」と記入して<br>
+        &emsp;&emsp;おきましょう。<br>
+        &emsp;&emsp;記入したら目のアイコンを押して「eye」を非表示にしてください。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample3.png">
+        </div>
+        <div class="section-title">ステップ4</div>
+        &emsp;&emsp;元画像のレイヤーを選択してブラシツールで目の部分を肌色に塗ります。<br>
+        &emsp;&emsp;スポイトツールで色を抽出すれば簡単に目を消せます。<br>
+        &emsp;&emsp;アバターの目を一旦消すのはコワイですが、これは諦めてください。<br>
+        &emsp;&emsp;ささっと消して上のレイヤーの「eye」を再表示すれば、すぐに復活しますので。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample4.png">
+        </div>
+        <div class="section-title">ステップ5</div>
+        &emsp;&emsp;「eye」のレイヤーを選択して「レイヤーを複製」を選択して、「eye2」を作ります。<br>
+        &emsp;&emsp;「Ctrl+T（自由変形）」で目を半分のサイズの細めに変えます。<br>
+        &emsp;&emsp;目の線が細くなりすぎたら少しだけブラシツールで書き足しておくと良いですね。<br>
+        &emsp;&emsp;*「レイヤーを複製」は非常によく使う機能ですのでFキーにショートカットを作っておくと作業が楽になります。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample5.png">
+        </div>
+        <div class="section-title">ステップ6</div>
+        &emsp;&emsp;レイヤーウィンドウの「+」を押して新規レイヤーを作成して「eye3」を作ります。<br>
+        &emsp;&emsp;目閉じの「eye3」はブラシツールで描きましょう。<br>
+        &emsp;&emsp;黒線を描くだけですので、そこまで難しくありません。<br>
+        &emsp;&emsp;拘りがある方は目が閉じた黒線の少し上に肌色より少し濃い目の線を描いてしっかりした目閉じ画像を……です。<br>
+        &emsp;&emsp;目閉じ画像ができたらパラパラ漫画を作る準備は完成です。<br>
+        &emsp;&emsp;*「新規レイヤーを作成」も非常によく使う機能ですのでFキーにショートカットを作っておくと良いです。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample6.png">
+        </div>
+        <div class="section-title">ステップ7</div>
+        &emsp;&emsp;ステップ1で表示したタイムラインで「1」の表示時間を5秒にします。<br>
+        &emsp;&emsp;（「eye2」と「eye3」は非表示にしておいてください）<br>
+        &emsp;&emsp;「+」ボタンを押すと「2」が作られますので、「eye」を非表示にして「eye2」を表示して表示時間を0.2秒にします。<br>
+        &emsp;&emsp;「+」ボタンをもう一回押して「3」を作り「eye3」を表示して表示時間を0.2秒にします。<br>
+        &emsp;&emsp;「+」ボタンをもう一回押して「4」を作り「eye2」を表示して表示時間を0.2秒にします。<br>
+        &emsp;&emsp;これでキャラクターが違和感なく瞬きするようになりました。<br>
+        &emsp;&emsp;「▶」を押すと再生されますので確認してみてください。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample7.png">
+        </div>
+        <div class="section-title">ステップ8</div>
+        &emsp;&emsp;「1」～「4」を「Shiht」+マウスを左クリックで全選択してください。<br>
+        &emsp;&emsp;全選択された状態で「+」を押すとコマが複製されますので、3回「+」を押して全部で16コマ作ります。<br>
+        &emsp;&emsp;「5」を3秒、「9」を4秒、「13」を6秒に設定します。<br>
+        &emsp;&emsp;これで、実際に動かした時にランダムで瞬きしているような感じが出来上がります。<br>
+        &emsp;&emsp;ゲーム作りをする方は2.8秒とか3.2秒などを使いキャラクターごとに瞬きのタイミングを変えておくと、<br>
+        &emsp;&emsp;キャラクターを複数人登場させた時にリアリティーを出す事ができますので試してみると良いと思います。<br>
+        &emsp;&emsp;一応「▶」を押して再生してみて問題なければステップ9に進みましょう。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample8.png">
+        </div>
+        <div class="section-title">ステップ9</div>
+        &emsp;&emsp;Photoshopの一番左上の「ファイル」を選択して「書き出し」 → 「ビデオレンタリング」 と進んでください。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample9.png">
+        </div>
+        <div class="section-title">ステップ10</div>
+        &emsp;&emsp;「フォルダを選択」でご自身の用意したフォルダを設定してください。<br>
+        &emsp;&emsp;（「連番」という空のフォルダを用意しておくのが一番良いです）<br>
+        &emsp;&emsp;次にデフォルトでは「Adobe Media Encoder」と表示されているところを「Photoshop画像シーケンス」に変更して<br>
+        &emsp;&emsp;ください。<br>
+        &emsp;&emsp;（デフォルトはmp4動画がレンダリングされる状態になっています）<br>
+        &emsp;&emsp;次にフレームレートを「5fps」に設定してください。<br>
+        &emsp;&emsp;（通常のビデオなら30fpsは必要ですが、背景透過画像であれば5～10fpsで充分です。<br>
+        &emsp;&emsp;&emsp;それ以上のフレームレートだと容量が大きくなりすぎて、読み込みが遅くなります）<br>
+        &emsp;&emsp;次に「レンダリングオプション」の「アルファチャンネル」を「ストレート - マットなし」に設定します。<br>
+        &emsp;&emsp;「マットなし」に設定しないと背景が透過されませんので注意してくださいね。<br>
+        &emsp;&emsp;最後に「レンダリング」を選択すると画像が連番で書きだされます。<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample10.png">
+        </div>
+        <div class="section-title">ステップ11</div>
+        &emsp;&emsp;最後に連番ファイルをアニメーション画像（webp/apng）に変換するツールに入れてビルドすれば背景透過動画の<br>
+        &emsp;&emsp;完成です。<br>
+        &emsp;&emsp;変換するツールの名称は他の階層に置いておきましたので、探してみてくださいね。<br>
+        &emsp;&emsp;まあ、日本で検索すればすぐにヒットすると思いますが……それ意外の国だとこの名称は……<br>
+        &emsp;&emsp;ちなみにこの変換ツールを作った方は天才です。<br>
+        &emsp;&emsp;コードを見てビックリしました。<br>
+        &emsp;&emsp;この変換ツールを無償で提供されているというのは本当に凄いと思います。<br>
+        &emsp;&emsp;ちょっと余談が入りましたが無事にビルドできましたでしょうか？<br>
+        &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/VideoCreation/sample11.png">
+        </div>
+        <div class="section-title">ラストステップ</div>
+        &emsp;&emsp;背景透過画像が完成すれば、ブラウザやゲームエンジンに組み込むことが可能です。<br>
+        &emsp;&emsp;「ブラウザやゲームエンジンに組み込める」＝「PCやスマホのほぼどこにでも組み込める」ですね。<br>
+        &emsp;&emsp;Socrariusはすぐに新しいアバターを組み込めるようにリストにブランク画像を入れてあります。<br>
+        &emsp;&emsp;作成したアバターをブランク画像と同じファイル名にして置き換えれば即AIアバターがあなたのPC画面の中に<br>
+        &emsp;&emsp;現れます。<br>
+        &emsp;&emsp;プログラミングが不慣れでもcontent.jsを開いて「Ctrl+F」でブランク画像のファイル名を入力してみて<br>
+        &emsp;&emsp;ください。<br>
+        &emsp;&emsp;「あ！ここだけ名前を変えればUIに反映されるのか！」と分かるはずですので。<br>
+        &emsp;&emsp;ゲームのキャラクターとして使うのも自由です。<br>
+        &emsp;&emsp;ティラノビルダーなどに組み込んで、自分でストーリーを作って……と無限の楽しみが生まれますので<br>
+        &emsp;&emsp;努力して作成したキャラクターを大事にしてあげてくださいね。<br>   
+<br> 
+&emsp; <div class="sao-video-container sao-link-box">       
+    <div class="sao-corner tl"></div>
+    <div class="sao-corner tr"></div>
+    <div class="sao-corner bl"></div>
+    <div class="sao-corner br"></div>
+    <div class="sao-scanline"></div>
+    <img src="https://socrarius-tool.com/VideoCreation/avater1.webp" class="sao-movie-content">  
+</div>
+<br>
+<br>
+&emsp;&emsp;あ！お伝えするの一つ忘れていたことがありました。<br>
+&emsp;&emsp;「webp/apng」ってmp4動画に比べてとんでもなく重たいんです。<br>
+&emsp;&emsp;ローカル拡張のSocrariusならさほど問題ないですが、サーバーに置いた場合は容量が大きいと読み込みが遅くなる<br>
+&emsp;&emsp;場合があります。<br>
+&emsp;&emsp;余裕があれば連番書き出ししたファイルを、ファイル軽量化サービスで軽くしてからビルドするのをお勧めします。<br>
+&emsp;&emsp;プロパティを開いて容量を見ると分かりますが……実は開発ってデータ容量との戦いなんですよね……(-_-;)<br>
+&emsp;&emsp;もしかして、LLMの画面がモノクロなのってAI倫理とかじゃなくて、単純にアバターを搭載するとサーバーがパンクする<br>
+&emsp;&emsp;からのなのかな？？？<br>
+&emsp;&emsp;<br>
+<br>
+<br>
+<br>
+<br>
+       
     </div>
-
-    <div class="container">
-    　　　　　<tr>
-                <td colspan="2" style="padding: 0;">
-                   <div class="section-title">追加フォントインストール方法</div>
-                </td>
-            </tr>
-            &emsp;&emsp;1.配布サイトからダウンロード<br>
-            <br>
-            &emsp;&emsp;2.OTFまたはTTFファイルを開く<br>
-            &emsp;&emsp;&nbsp;&nbsp;*txtファイルには利用規約などが記載されていますので必ず読んでください<br>
-            <br>
-            &emsp;<div class="img-box">
-            <img src="https://socrarius-tool.com/favorite_fonts/reference1.png">
-            </div>
-            <br>
-            <br>
-            &emsp;&emsp;3.インストールボタンを押す<br>
-            <br>
-            &emsp;<div class="img-box">
-            <img src="https://socrarius-tool.com/favorite_fonts/reference2.png">
-            </div>
-            <br>
-            &emsp;&emsp;以上で完了です<br>
-            <br>
-            &emsp;&emsp;利用する時はフォントを作成してくれている方々に感謝を忘れないようにしましょう<br>
-            <br>
-            <br>
-            &emsp;&emsp;【参考】<br>
-            &emsp;&emsp;自作のフォントを作りたい方は「モジサク」「FontStruct」などが便利です<br>
-            <br>
-            <br>
-    </div>
-
-            <style>
-            .hidden-door {
-            cursor: default;
-            display: inline-block;
-            }
-            .sao-movie-content {
-            transition: none !important;
-            pointer-events: auto; 
-            }
-           </style>
-
-<script>
-// 🌸 隠しドアをクリックした時に音を鳴らしてジャンプする魔法
-function openHiddenDoor(event) {
-    // 通常の即時ページ遷移を一旦ストップ
-    event.preventDefault();
-    
-    // 音の再生
-    const sound = document.getElementById('click-magic');
-    if (sound) {
-        sound.currentTime = 0; // 頭出し
-        sound.play().catch(e => console.log("Audio error:", e));
-    }
-    
-    // リンク先のURLを取得
-    const targetUrl = event.currentTarget.getAttribute('href');
-    
-    // 音の余韻（0.3秒後）に合わせて真実の扉へジャンプ！
-    setTimeout(function() {
-        window.location.href = targetUrl;
-    }, 2000);
-}
-</script>
 
 </body>
 </html>
