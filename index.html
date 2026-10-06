@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <audio id="click-magic" preload="auto">
+        <source src="https://socrarius-tool.com/launcher/magic21.mp3" type="audio/mp3">
+    </audio>
+
+    <title>Font list</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #eeeeee;
+        }
+
+        /* タイトルバナー（高さ65px） */
+        .title-banner {
+            background-color: #000000;
+            height: 65px; 
+            box-sizing: border-box;
+            padding: 15px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+         /* ✨ 変更：バナー用のラッパー（画像がはみ出さないように中央に包む） */
+        .banner-container {
+            width: 100%;
+            background-color: #000000; /* 画像の背景を黒にして馴染ませる */
+            text-align: center;       /* 画像を中央揃えにする */
+        }
+
+        /* ✨ 変更：最上部の画像（固定せず、画面幅に合わせて伸縮するだけ） */
+        .top-banner-img {
+            display: block;
+            width: 100%;         /* 画面の横幅いっぱいに広げる */
+            max-width: 900px;    /* テーブルの最大幅と合わせて一体感を出す */
+            height: auto;        /* 縦横比を崩さずに拡大縮小 */
+            margin: 0 auto;      /* 中央揃え */
+        }
+
+        /* --- 🌸 ヘッダー（黒バー＋ナビ）だけを固定！ --- */
+        .fixed-header {
+            position: fixed;
+            /* 💡 魔法のポイント：top: 0 ではなく、初期状態は通常配置、スクロール時に上部に張り付くように設定！ */
+            position: -webkit-sticky; /* サファリ用 */
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999; /* 重なり順を一番上に */
+            background-color: #1a1a1a;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+        }
+
+        .title-banner h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #00a8ff;
+            border-left: 5px solid #008eb6;
+            padding-left: 15px;
+            line-height: 1.2;
+        }
+
+        /* ナビゲーションバー（高さ35px） */
+        .nav-bar {
+            background-color: #000000;
+            height: 35px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 10px;
+            align-items: center;
+            border-bottom: 2px solid #008eb6;
+        }
+
+        .nav-bar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0 15px;
+            line-height: 35px;
+            border-right: 1px solid #444;
+            transition: color 0.3s;
+        }
+
+        /* --- コンテンツエリア --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            /* 🌸 ヘッダーの合計(100px)＋余白分を確保 */
+            padding-top: 20px; 
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* --- 🌸 運命の「Shape Name」バーの固定設定 --- */
+        th {
+            background-color: #008eb6;
+            color: white;
+            position: sticky;
+            /* 🌸 ヘッダー合計 100px の位置に吸着！ */
+            top: 0px; 
+            z-index: 100;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #3d3d3d;    /* ★薄いグレーの区切り線 */
+            border-right: 1px solid #3d3d3d; /* 横線と同じ落ち着いたグレー */
+        }
+
+        .preview-img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* 🌸 セクションタイトル（追加） */
+        .section-title {
+            background: #000;
+            color: #00f2fe;
+            padding: 8px 15px;
+            margin: 15px 0 15px 0;
+            font-size: 14px;
+            font-weight: bold;
+            border-left: 4px solid #00f2fe;
+            letter-spacing: 2px;
+            box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+
+    .secret-link {
+        display: inline-block;
+        cursor: default; 
+    }
+
+    .secret-link .preview-img {
+        pointer-events: auto; 
+        transition: none;     
+    }
+    
+    .secret-link:hover, .secret-link:active {
+        text-decoration: none;
+    }
+
+     /* 🌸 解説画像を入れる専用枠BOX */
+        .img-box {
+            display: inline-block;
+            border: 1px solid #008eb6;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 168, 255, 0.25);
+            background-color: #000000;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            margin-left: 1.5em;
+            overflow: hidden;
+        }
+
+        .img-box img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+        <div class="banner-container">
+        <img src="https://socrarius-tool.com/favorite_fonts/banner1.jpg" alt="socrarius" class="top-banner-img">
+    </div>
+
+    <div class="container">
+        <div class="title-area">
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%;">Font</th>
+                    <th style="width: 70%;">Preview</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Noto Sans</td>
+                    <td><img src="font1.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Noto Sans ip</td>
+                    <td><img src="font2.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>MSゴシック 標準</td>
+                    <td><img src="font3.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>MS明朝 標準</td>
+                    <td><img src="font4.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Alex Brush</td>
+                    <td><img src="font5.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Segoe UI</td>
+                    <td><img src="font6.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Meiryo/メイリオ</td>
+                    <td><img src="font7.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Yu Gothic/游ゴシック</td>
+                    <td><img src="font8.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Arial</td>
+                    <td><img src="font9.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Calibri</td>
+                    <td><img src="font10.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Cambria</td>
+                    <td><img src="font11.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>やさしさゴシック</td>
+                    <td><img src="font12.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>しっぽり明朝</td>
+                    <td><img src="font13.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>コーポレート・ロゴ</td>
+                    <td><img src="font14.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>BIZ UDPゴシック</td>
+                    <td><img src="font15.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Futura</td>
+                    <td><img src="font16.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Garamond</td>
+                    <td><img src="font17.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Didot</td>
+                    <td><img src="font18.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Bodoni</td>
+                    <td><img src="font19.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>JetBrainsMono</td>
+                    <td><img src="font21.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                <tr>
+                    <td>Orbitron</td>
+                    <td><img src="font22.png" alt="吹き出し" class="preview-img"></td>
+                </tr>
+
+                 <tr>
+                 <td>MT Extra</td>
+                <td>
+                <a href="https://socrarius-tool.com/BookofTruth/" class="hidden-door" onclick="openHiddenDoor(event)">
+                <img src="font20.png" alt="吹き出し" class="sao-movie-content">
+                </a>
+
+                <audio id="click-magic" preload="auto">
+                <source src="https://socrarius-tool.com/launcher/magic21.mp3" type="audio/mp3">
+                </audio>
+                </td>
+                </tr>
+
+                </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+    　　　　　<tr>
+                <td colspan="2" style="padding: 0;">
+                   <div class="section-title">追加フォントインストール方法</div>
+                </td>
+            </tr>
+            &emsp;&emsp;1.配布サイトからダウンロード<br>
+            <br>
+            &emsp;&emsp;2.OTFまたはTTFファイルを開く<br>
+            &emsp;&emsp;&nbsp;&nbsp;*txtファイルには利用規約などが記載されていますので必ず読んでください<br>
+            <br>
+            &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/favorite_fonts/reference1.png">
+            </div>
+            <br>
+            <br>
+            &emsp;&emsp;3.インストールボタンを押す<br>
+            <br>
+            &emsp;<div class="img-box">
+            <img src="https://socrarius-tool.com/favorite_fonts/reference2.png">
+            </div>
+            <br>
+            &emsp;&emsp;以上で完了です<br>
+            <br>
+            &emsp;&emsp;利用する時はフォントを作成してくれている方々に感謝を忘れないようにしましょう<br>
+            <br>
+            <br>
+            &emsp;&emsp;【参考】<br>
+            &emsp;&emsp;自作のフォントを作りたい方は「モジサク」「FontStruct」などが便利です<br>
+            <br>
+            <br>
+    </div>
+
+            <style>
+            .hidden-door {
+            cursor: default;
+            display: inline-block;
+            }
+            .sao-movie-content {
+            transition: none !important;
+            pointer-events: auto; 
+            }
+           </style>
+
+<script>
+// 🌸 隠しドアをクリックした時に音を鳴らしてジャンプする魔法
+function openHiddenDoor(event) {
+    // 通常の即時ページ遷移を一旦ストップ
+    event.preventDefault();
+    
+    // 音の再生
+    const sound = document.getElementById('click-magic');
+    if (sound) {
+        sound.currentTime = 0; // 頭出し
+        sound.play().catch(e => console.log("Audio error:", e));
+    }
+    
+    // リンク先のURLを取得
+    const targetUrl = event.currentTarget.getAttribute('href');
+    
+    // 音の余韻（0.3秒後）に合わせて真実の扉へジャンプ！
+    setTimeout(function() {
+        window.location.href = targetUrl;
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
